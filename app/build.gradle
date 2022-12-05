@@ -8,18 +8,14 @@ android {
     applicationId "com.sanskritbasics"
     minSdkVersion 19
     targetSdkVersion 33
-    versionCode 32
-    versionName "3.2"
+    versionCode 33
+    versionName "3.3"
+    setProperty("archivesBaseName","${applicationId}-v${versionName}")
   }
   buildTypes {
     release {
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-      applicationVariants.all { variant ->
-        variant.outputs.all {
-          outputFileName = "${applicationId}-${versionName}:${versionCode}-release.apk"
-        }
-      }
     }
   }
   flavorDimensions 'version'
@@ -54,7 +50,7 @@ dependencies {
 }
 
 task createZip(type: Zip) {
-  archiveBaseName = "sanskritbasics"
+  archiveFileName = "sanskritbasics.zip"
   destinationDirectory = file('src/main/res/raw')
   from(files('../sanskritbasics'))
 }
